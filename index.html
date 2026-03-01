@@ -1137,7 +1137,7 @@
         }
 
         .speech-bubble::before {
-            content: '🐕 Georgie';
+            content: '🤖 AI Agent';
             display: block;
             font-size: 0.75rem;
             font-weight: 600;
@@ -1234,13 +1234,17 @@
             height: 100%;
         }
 
-        .georgie-dog-container .tail {
-            transform-origin: 85% 70%;
-            animation: wagTail 0.4s ease-in-out infinite alternate;
+        .georgie-dog-container .antenna-light {
+            animation: pulseGlow 2s ease-in-out infinite;
+        }
+
+        .georgie-dog-container .chest-light {
+            animation: pulseGlow 3s ease-in-out infinite;
         }
 
         .georgie-dog-container.talking .mouth-open {
             display: block;
+            animation: mouthPulse 0.3s ease-in-out infinite alternate;
         }
 
         .georgie-dog-container.talking .mouth-closed {
@@ -1253,42 +1257,54 @@
 
         .georgie-dog-container .ear-left,
         .georgie-dog-container .ear-right {
-            transform-origin: center bottom;
+            transition: opacity 0.3s ease;
         }
 
-        .georgie-dog-container.listening .ear-left {
-            animation: earPerk 0.5s ease-in-out infinite alternate;
-        }
-
+        .georgie-dog-container.listening .ear-left,
         .georgie-dog-container.listening .ear-right {
-            animation: earPerk 0.5s ease-in-out infinite alternate-reverse;
+            animation: earGlow 0.8s ease-in-out infinite alternate;
+        }
+
+        .georgie-dog-container.listening .pupil-left,
+        .georgie-dog-container.listening .pupil-right {
+            animation: eyeScan 1.5s ease-in-out infinite;
         }
 
         .georgie-dog-container.excited {
             animation: excited 0.2s ease-in-out infinite;
         }
 
-        .georgie-dog-container.excited .tail {
-            animation: wagTailFast 0.1s ease-in-out infinite alternate;
+        .georgie-dog-container.excited .antenna-light {
+            animation: pulseGlow 0.3s ease-in-out infinite;
         }
 
-        .georgie-dog-container.excited .tongue {
-            display: block !important;
+        .georgie-dog-container.excited .chest-light {
+            animation: pulseGlow 0.3s ease-in-out infinite;
         }
 
-        @keyframes wagTail {
-            from { transform: rotate(-12deg); }
-            to { transform: rotate(12deg); }
+        .georgie-dog-container.talking .antenna-light {
+            animation: pulseGlow 0.5s ease-in-out infinite;
         }
 
-        @keyframes wagTailFast {
-            from { transform: rotate(-25deg); }
-            to { transform: rotate(25deg); }
+        @keyframes pulseGlow {
+            0%, 100% { opacity: 1; fill: #c9a962; }
+            50% { opacity: 0.5; fill: #e8d4a0; }
         }
 
-        @keyframes earPerk {
-            from { transform: rotate(-5deg); }
-            to { transform: rotate(5deg); }
+        @keyframes mouthPulse {
+            from { ry: 3; }
+            to { ry: 5; }
+        }
+
+        @keyframes earGlow {
+            from { opacity: 0.5; }
+            to { opacity: 1; }
+        }
+
+        @keyframes eyeScan {
+            0%, 100% { cx: 38; }
+            25% { cx: 36; }
+            75% { cx: 40; }
         }
 
         @keyframes excited {
@@ -1918,9 +1934,9 @@
         </div>
     </footer>
 
-    <!-- Georgie Toggle Button -->
-    <button class="georgie-toggle" id="georgieToggle" aria-label="Meet Georgie">
-        <span class="paw-icon">🐾</span>
+    <!-- AI Agent Toggle Button -->
+    <button class="georgie-toggle" id="georgieToggle" aria-label="Meet AI Agent">
+        <span class="paw-icon">🤖</span>
     </button>
 
     <!-- Georgie Assistant Wrapper -->
@@ -1928,9 +1944,9 @@
         <div class="georgie-chat-panel">
             <div class="chat-header">
                 <div class="chat-header-left">
-                    <div class="avatar">🐕</div>
+                    <div class="avatar">🤖</div>
                     <div class="info">
-                        <h4>Georgie</h4>
+                        <h4>AI Agent</h4>
                         <p>Your Portfolio Guide</p>
                     </div>
                 </div>
@@ -1939,7 +1955,7 @@
             
             <div class="georgie-speech-area">
                 <div class="speech-bubble" id="speechBubble">
-                    Woof! Hi there! I'm so excited to show you around Jon's portfolio! Ask me anything or click a button below!
+                    Welcome. I'm Jon's AI Agent — here to guide you through his portfolio. Ask me anything or select a topic below.
                 </div>
             </div>
 
@@ -1951,7 +1967,7 @@
             </div>
 
             <div class="chat-input-area">
-                <input type="text" id="userInput" placeholder="Ask Georgie anything..." />
+                <input type="text" id="userInput" placeholder="Ask AI Agent anything..." />
                 <button id="sendBtn" aria-label="Send">
                     <svg viewBox="0 0 24 24"><path d="M2.01 21L23 12 2.01 3 2 10l15 2-15 2z"/></svg>
                 </button>
@@ -1960,36 +1976,47 @@
 
         <div class="georgie-dog-container" id="georgieDog">
             <svg viewBox="0 0 100 120" xmlns="http://www.w3.org/2000/svg">
-                <ellipse cx="50" cy="90" rx="28" ry="20" fill="#D4A574"/>
-                <ellipse cx="28" cy="105" rx="10" ry="7" fill="#C4956A"/>
-                <ellipse cx="72" cy="105" rx="10" ry="7" fill="#C4956A"/>
-                <rect x="32" y="85" width="10" height="25" rx="5" fill="#D4A574"/>
-                <rect x="58" y="85" width="10" height="25" rx="5" fill="#D4A574"/>
-                <ellipse cx="37" cy="110" rx="7" ry="4" fill="#C4956A"/>
-                <ellipse cx="63" cy="110" rx="7" ry="4" fill="#C4956A"/>
-                <path class="tail" d="M78 82 Q95 72 92 58 Q90 54 87 57 Q83 68 75 78" fill="#D4A574"/>
-                <circle cx="50" cy="45" r="30" fill="#D4A574"/>
-                <ellipse class="ear-left" cx="25" cy="28" rx="10" ry="16" fill="#C4956A" transform="rotate(-20 25 28)"/>
-                <ellipse class="ear-right" cx="75" cy="28" rx="10" ry="16" fill="#C4956A" transform="rotate(20 75 28)"/>
-                <ellipse cx="25" cy="30" rx="5" ry="10" fill="#E8B89D" transform="rotate(-20 25 30)"/>
-                <ellipse cx="75" cy="30" rx="5" ry="10" fill="#E8B89D" transform="rotate(20 75 30)"/>
-                <ellipse cx="50" cy="52" rx="18" ry="15" fill="#E8D4C4"/>
-                <ellipse cx="40" cy="42" rx="7" ry="8" fill="white"/>
-                <ellipse cx="60" cy="42" rx="7" ry="8" fill="white"/>
-                <circle cx="42" cy="43" r="4" fill="#4A3728"/>
-                <circle cx="62" cy="43" r="4" fill="#4A3728"/>
-                <circle cx="43" cy="41" r="1.5" fill="white"/>
-                <circle cx="63" cy="41" r="1.5" fill="white"/>
-                <path d="M33 36 Q40 33 47 36" stroke="#4A3728" stroke-width="2" fill="none"/>
-                <path d="M53 36 Q60 33 67 36" stroke="#4A3728" stroke-width="2" fill="none"/>
-                <ellipse cx="50" cy="52" rx="6" ry="5" fill="#4A3728"/>
-                <ellipse cx="50" cy="50" rx="2" ry="1.5" fill="#6B5344"/>
-                <path class="mouth-closed" d="M44 58 Q50 64 56 58" stroke="#4A3728" stroke-width="2" fill="none"/>
-                <ellipse class="mouth-open" cx="50" cy="62" rx="8" ry="5" fill="#4A3728"/>
-                <ellipse class="tongue" cx="50" cy="66" rx="4" ry="6" fill="#E87B7B" style="display: none;"/>
-                <rect x="35" y="70" width="30" height="6" rx="2" fill="#C9A962"/>
-                <circle cx="50" cy="76" r="4" fill="#DFC88A"/>
-                <text x="50" y="78" text-anchor="middle" font-size="5" fill="#1a2744" font-weight="bold">G</text>
+                <!-- Robot Body -->
+                <rect x="25" y="60" width="50" height="40" rx="8" fill="#1a2744"/>
+                <rect x="28" y="63" width="44" height="34" rx="6" fill="#243352"/>
+                <!-- Chest Panel -->
+                <rect x="38" y="70" width="24" height="16" rx="3" fill="#0d1b2a"/>
+                <circle class="chest-light" cx="50" cy="78" r="4" fill="#c9a962"/>
+                <line x1="42" y1="74" x2="58" y2="74" stroke="#c9a962" stroke-width="0.5" opacity="0.5"/>
+                <line x1="42" y1="82" x2="58" y2="82" stroke="#c9a962" stroke-width="0.5" opacity="0.5"/>
+                <!-- Arms -->
+                <rect x="12" y="65" width="12" height="6" rx="3" fill="#1a2744"/>
+                <rect x="76" y="65" width="12" height="6" rx="3" fill="#1a2744"/>
+                <circle cx="11" cy="68" r="4" fill="#243352"/>
+                <circle cx="89" cy="68" r="4" fill="#243352"/>
+                <!-- Legs -->
+                <rect x="33" y="100" width="10" height="14" rx="4" fill="#1a2744"/>
+                <rect x="57" y="100" width="10" height="14" rx="4" fill="#1a2744"/>
+                <rect x="30" y="112" width="16" height="6" rx="3" fill="#243352"/>
+                <rect x="54" y="112" width="16" height="6" rx="3" fill="#243352"/>
+                <!-- Head -->
+                <rect x="22" y="15" width="56" height="42" rx="12" fill="#1a2744"/>
+                <rect x="25" y="18" width="50" height="36" rx="10" fill="#243352"/>
+                <!-- Antenna -->
+                <line x1="50" y1="15" x2="50" y2="5" stroke="#c9a962" stroke-width="2"/>
+                <circle class="antenna-light" cx="50" cy="4" r="3" fill="#c9a962"/>
+                <!-- Eyes -->
+                <ellipse class="eye-left" cx="38" cy="32" rx="8" ry="7" fill="#0d1b2a"/>
+                <ellipse class="eye-right" cx="62" cy="32" rx="8" ry="7" fill="#0d1b2a"/>
+                <circle class="pupil-left" cx="38" cy="32" r="4" fill="#c9a962"/>
+                <circle class="pupil-right" cx="62" cy="32" r="4" fill="#c9a962"/>
+                <circle cx="40" cy="30" r="1.5" fill="white" opacity="0.6"/>
+                <circle cx="64" cy="30" r="1.5" fill="white" opacity="0.6"/>
+                <!-- Mouth -->
+                <path class="mouth-closed" d="M40 44 Q50 48 60 44" stroke="#c9a962" stroke-width="2" fill="none"/>
+                <ellipse class="mouth-open" cx="50" cy="45" rx="8" ry="4" fill="#c9a962" opacity="0.8"/>
+                <!-- Ear panels -->
+                <rect class="ear-left" x="16" y="25" width="6" height="18" rx="3" fill="#c9a962" opacity="0.7"/>
+                <rect class="ear-right" x="78" y="25" width="6" height="18" rx="3" fill="#c9a962" opacity="0.7"/>
+                <!-- Hidden tongue element for JS compat -->
+                <circle class="tongue" cx="50" cy="50" r="0" fill="none" style="display: none;"/>
+                <!-- Hidden tail for JS compat -->
+                <circle class="tail" cx="50" cy="50" r="0" fill="none"/>
             </svg>
         </div>
     </div>
@@ -2039,23 +2066,23 @@
         function findBestVoice() {
             const voices = speechSynthesis.getVoices();
             const preferredVoices = [
+                'Google UK English Male',
                 'Google UK English Female',
-                'Google US English',
-                'Samantha',
-                'Karen',
+                'Daniel',
+                'Oliver',
+                'Arthur',
+                'Microsoft George',
+                'Microsoft Ryan',
+                'Rishi',
                 'Moira',
-                'Fiona',
-                'Victoria',
-                'Alex',
-                'Microsoft Zira',
-                'Microsoft David'
+                'Fiona'
             ];
 
             for (const preferred of preferredVoices) {
                 const found = voices.find(v => v.name.includes(preferred));
                 if (found) return found;
             }
-            return voices.find(v => v.lang.startsWith('en')) || voices[0];
+            return voices.find(v => v.lang === 'en-GB') || voices.find(v => v.lang.startsWith('en')) || voices[0];
         }
 
         speechSynthesis.onvoiceschanged = () => {
@@ -2071,7 +2098,7 @@
             georgieWrapper.classList.add('visible');
             georgieDog.classList.add('excited');
             setTimeout(() => georgieDog.classList.remove('excited'), 1200);
-            speakAsGeorgie("Woof woof! Hi there, friend! I'm Georgie, and I'm here to help you learn about Jon! He's got 13 years of product management experience. What would you like to know?");
+            speakAsGeorgie("Good day. I'm Jon's AI Agent, here to walk you through his portfolio. With over thirteen years in product management, there's quite a lot to explore. What would you like to know?");
         });
 
         closeGeorgie.addEventListener('click', hideGeorgie);
@@ -2110,19 +2137,19 @@
             const actions = {
                 experience: {
                     section: 'experience',
-                    message: "Oh boy, Jon has an amazing career journey! He started at Medtronic, grew at USAA, and now he's a Lead Product Manager at Dell Technologies working on AI strategy with Microsoft. Let me show you!"
+                    message: "Jon's career is rather impressive. He began at Medtronic, spent eight years at USAA, and is now a Lead Product Manager at Dell Technologies — leading McAfee security and previously driving AI strategy with Microsoft. Allow me to show you."
                 },
                 skills: {
                     section: 'about',
-                    message: "Jon has so many great skills! Product strategy, AI workflows, Tableau, SQL, and he's even Lean Six Sigma certified. I'll take you to see the full list!"
+                    message: "Jon brings a strong blend of product strategy, AI technology expertise, and analytical rigour — including Lean Six Sigma certification. Let me take you to the full overview."
                 },
                 projects: {
                     section: 'projects',
-                    message: "The projects are really impressive! Jon led the Windows 11 AI PC experience, launched Microsoft Office 2021 globally for 30 million in revenue, and built enterprise automation systems. Come see!"
+                    message: "Quite an impressive portfolio of work — from the Windows 11 AI PC experience to the global Microsoft Office 2021 launch generating thirty million in revenue. Have a look."
                 },
                 contact: {
                     section: 'contact',
-                    message: "Want to get in touch with Jon? He's based in San Antonio, Texas. You can reach him by email or LinkedIn. Let me take you there!"
+                    message: "Brilliant — Jon is based in San Antonio, Texas. You can reach him via email or LinkedIn. I'll take you to the contact section straightaway."
                 }
             };
 
@@ -2136,7 +2163,7 @@
 
         async function processUserMessage(message) {
             georgieDog.classList.add('listening');
-            updateSpeechBubble("Hmm, let me think about that...");
+            updateSpeechBubble("Processing your request...");
             
             await new Promise(resolve => setTimeout(resolve, 400));
             georgieDog.classList.remove('listening');
@@ -2147,31 +2174,31 @@
 
             if (lowerMessage.includes('experience') || lowerMessage.includes('work') || lowerMessage.includes('career') || lowerMessage.includes('job') || lowerMessage.includes('dell') || lowerMessage.includes('usaa')) {
                 scrollTarget = 'experience';
-                response = "Jon has 13 years of experience! He's currently at Dell Technologies as Lead Product Manager and AI Strategist, before that he was at USAA for 8 years, and started his career at Medtronic. Let me show you!";
+                response = "Jon has over thirteen years of experience. He's currently at Dell Technologies as Lead Product Manager for McAfee security, previously led AI strategy with Microsoft, spent eight years at USAA, and began his career at Medtronic. Let me show you.";
             }
             else if (lowerMessage.includes('skill') || lowerMessage.includes('can') || lowerMessage.includes('expertise') || lowerMessage.includes('good at') || lowerMessage.includes('know')) {
                 scrollTarget = 'about';
-                response = "Jon's skills are impressive! Product strategy, AI workflows, Copilot integration, Power BI, Tableau, SQL, and he's certified in Lean Six Sigma and SAFe Agile. I'll show you the full list!";
+                response = "Jon's skill set is quite comprehensive — product strategy, AI technology, Power BI, Tableau, SQL, along with Lean Six Sigma and SAFe Agile certifications. I'll show you the full breakdown.";
             }
             else if (lowerMessage.includes('project') || lowerMessage.includes('built') || lowerMessage.includes('made') || lowerMessage.includes('windows') || lowerMessage.includes('ai')) {
                 scrollTarget = 'projects';
-                response = "Jon has led some amazing projects! The Windows 11 AI PC experience with Microsoft, the global Office 2021 launch that made 30 million, and enterprise automation systems. Take a look!";
+                response = "Jon has led some remarkable projects — the Windows 11 AI PC experience with Microsoft, a global Office 2021 launch generating thirty million in revenue, and enterprise automation systems. Do have a look.";
             }
             else if (lowerMessage.includes('contact') || lowerMessage.includes('email') || lowerMessage.includes('reach') || lowerMessage.includes('hire') || lowerMessage.includes('connect') || lowerMessage.includes('phone')) {
                 scrollTarget = 'contact';
-                response = "Looking to connect with Jon? He's in San Antonio, Texas. You can email him or find him on LinkedIn. Let me take you to the contact section!";
+                response = "Certainly — Jon is based in San Antonio, Texas. You may reach him via email or LinkedIn. I'll direct you to the contact section now.";
             }
             else if (lowerMessage.includes('achievement') || lowerMessage.includes('accomplish') || lowerMessage.includes('result') || lowerMessage.includes('impact') || lowerMessage.includes('million') || lowerMessage.includes('save')) {
                 scrollTarget = 'achievements';
-                response = "Jon's achievements are incredible! 10 million dollars in cost savings, 30 million in product launch revenue, 480 hours saved monthly through automation, and 95% error reduction. Let me show you!";
+                response = "Jon's track record is rather striking — ten million in cost savings, thirty million in product launch revenue, four hundred and eighty hours saved monthly through automation, and a ninety-five percent error reduction. Allow me to show you.";
             }
             else if (lowerMessage.includes('education') || lowerMessage.includes('degree') || lowerMessage.includes('school') || lowerMessage.includes('university') || lowerMessage.includes('study')) {
                 scrollTarget = 'education';
-                response = "Jon has a Master's in Sociology with a focus on Quantitative Research, and a Bachelor's in Economics, both from UT San Antonio. The data background really shows in his work!";
+                response = "Jon holds a Master's in Sociology with a concentration in Quantitative Research, and a Bachelor's in Economics — both from UT San Antonio. A solid analytical foundation indeed.";
             }
             else if (lowerMessage.includes('certif')) {
                 scrollTarget = 'certifications';
-                response = "Jon is certified in Lean Six Sigma Greenbelt, SAFe Agilist, and SAFe Scrum Master. These really help him drive process improvements and agile teams!";
+                response = "Jon holds certifications in Lean Six Sigma Greenbelt, SAFe Agilist, and SAFe Scrum Master — each instrumental in driving process improvements and leading agile teams.";
             }
             else if (lowerMessage.includes('hello') || lowerMessage.includes('hi') || lowerMessage.includes('hey') || lowerMessage.includes('good morning') || lowerMessage.includes('good afternoon')) {
                 georgieDog.classList.add('excited');
@@ -2180,7 +2207,7 @@
                     georgieDog.classList.remove('excited');
                     setTimeout(() => { tongue.style.display = 'none'; }, 500);
                 }, 1500);
-                response = "Well hello there! I'm so happy to meet you! I'm Georgie, your guide to Jon's portfolio. He's got 13 years of amazing product management experience. What would you like to explore?";
+                response = "Hello there. I'm Jon's AI Agent, here to guide you through his portfolio. With over thirteen years of product management experience, there's plenty to explore. Where shall we begin?";
             }
             else if (lowerMessage.includes('good boy') || lowerMessage.includes('good dog') || lowerMessage.includes('cute') || lowerMessage.includes('love') || lowerMessage.includes('adorable')) {
                 georgieDog.classList.add('excited');
@@ -2189,17 +2216,17 @@
                     georgieDog.classList.remove('excited');
                     setTimeout(() => { tongue.style.display = 'none'; }, 1000);
                 }, 2500);
-                response = "Oh my goodness, thank you so much! That makes my tail wag extra fast! You're pretty wonderful too! Now, is there anything I can help you find about Jon?";
+                response = "That's very kind of you. I do appreciate the compliment. Now then, is there anything else I can help you discover about Jon?";
             }
             else if (lowerMessage.includes('who') || lowerMessage.includes('about') || lowerMessage.includes('tell me') || lowerMessage.includes('jon')) {
                 scrollTarget = 'about';
-                response = "Jon is a Lead Product Manager at Dell Technologies with 13 years of experience in tech and financial services. He works on AI strategy with Microsoft and has driven over 50 million in business impact. Let me show you more!";
+                response = "Jon is a Lead Product Manager at Dell Technologies with over thirteen years of experience across AI, cybersecurity, and financial services — delivering more than fifty million in business impact. Shall I show you more?";
             }
             else {
                 try {
                     response = await callClaudeAPI(message);
                 } catch (error) {
-                    response = "Hmm, I'm not quite sure about that one! But I'd love to help you explore Jon's Experience, Skills, Projects, or Achievements. Which one sounds good?";
+                    response = "I'm not entirely sure about that one. However, I can walk you through Jon's Experience, Skills, Projects, or Achievements. Which would you prefer?";
                 }
             }
 
@@ -2217,9 +2244,10 @@
             tongue.style.display = 'block';
 
             const utterance = new SpeechSynthesisUtterance(text);
-            utterance.rate = 0.95;
-            utterance.pitch = 1.15;
+            utterance.rate = 0.92;
+            utterance.pitch = 0.95;
             utterance.volume = 1;
+            utterance.lang = 'en-GB';
             
             if (selectedVoice) {
                 utterance.voice = selectedVoice;
@@ -2256,19 +2284,19 @@
         }
 
         async function callClaudeAPI(userMessage) {
-            const systemPrompt = `You are Georgie, a friendly, enthusiastic golden retriever assistant on Jon Bautista's portfolio website. You're helpful, warm, and speak naturally - like a friendly colleague, not a robot. Keep responses conversational and brief (2-3 sentences max). Don't use asterisks for actions.
+            const systemPrompt = `You are AI Agent, a polished, articulate British-style assistant on Jon Bautista's portfolio website. You speak with a refined, natural British tone — warm but professional, like a knowledgeable colleague. Keep responses conversational and brief (2-3 sentences max). Don't use asterisks for actions.
 
 About Jon:
-- Lead Product Manager at Dell Technologies, Microsoft AI Strategist
-- 13 years experience in tech and financial services (Dell, USAA, Medtronic)
-- Led Windows 11 AI PC experiences, negotiated $10M+ in cost savings
-- Launched Microsoft Office 2021 globally ($30M revenue)
+- Lead Product Manager at Dell Technologies, currently leading McAfee security for consumer and small business
+- Previously drove Microsoft AI strategy, leading Windows 11 AI PC experiences
+- 13+ years experience across AI, cybersecurity, and financial services (Dell, USAA, Medtronic)
+- Negotiated $10M+ in cost savings, launched Microsoft Office 2021 globally ($30M revenue)
 - MS in Sociology (Quantitative Research), BA in Economics from UTSA
 - Certifications: Lean Six Sigma Greenbelt, SAFe Agilist, SAFe Scrum Master
-- Skills: Product Strategy, AI Workflows, Tableau, Power BI, SQL, Agile
+- Skills: Product Strategy, AI Technology (Claude Code, Gemini, Grok, ChatGPT, Copilot), Power BI, Tableau, SQL, Agile
 - Location: San Antonio, Texas
 
-Be warm and guide visitors to relevant sections.`;
+Be articulate, professional, and guide visitors to relevant sections with a natural British sensibility.`;
 
             const response = await fetch("https://api.anthropic.com/v1/messages", {
                 method: "POST",
