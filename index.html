@@ -1002,9 +1002,6 @@
         /* ==================== */
         
         .georgie-toggle {
-            position: fixed;
-            bottom: 2rem;
-            right: 2rem;
             width: 70px;
             height: 70px;
             background: linear-gradient(135deg, var(--accent-gold) 0%, var(--accent-gold-light) 100%);
@@ -1965,9 +1962,12 @@
     </footer>
 
     <!-- AI Agent Toggle Button -->
-    <button class="georgie-toggle" id="georgieToggle" aria-label="Meet AI Agent">
-        <span class="paw-icon">🤖</span>
-    </button>
+    <div style="position: fixed; bottom: 2rem; right: 2rem; z-index: 1001; display: flex; flex-direction: column; align-items: center; gap: 0.3rem;">
+        <button class="georgie-toggle" id="georgieToggle" aria-label="Meet AI Agent" style="position: static;">
+            <span class="paw-icon">🤖</span>
+        </button>
+        <span style="font-size: 0.6rem; color: rgba(255,255,255,0.5); font-family: 'Source Sans 3', sans-serif; letter-spacing: 0.5px;">Ask AI</span>
+    </div>
 
     <!-- Georgie Assistant Wrapper -->
     <div class="georgie-assistant-wrapper" id="georgieWrapper">
