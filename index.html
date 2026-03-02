@@ -483,6 +483,120 @@
             opacity: 0.8;
         }
 
+        .achievement-card {
+            cursor: pointer;
+        }
+
+        .card-overlay {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.7);
+            z-index: 1999;
+        }
+
+        .card-overlay.visible {
+            display: block;
+        }
+
+        .achievement-card.expanded {
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%) !important;
+            width: 90%;
+            max-width: 600px;
+            max-height: 80vh;
+            overflow-y: auto;
+            z-index: 2000;
+            padding: 2.5rem;
+            background: var(--primary-navy);
+            border: 1px solid rgba(201, 169, 98, 0.4);
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5);
+            animation: cardExpand 0.3s ease;
+        }
+
+        .achievement-card.expanded:hover {
+            transform: translate(-50%, -50%) !important;
+        }
+
+        @keyframes cardExpand {
+            from { opacity: 0; transform: translate(-50%, -50%) scale(0.8); }
+            to { opacity: 1; transform: translate(-50%, -50%) scale(1); }
+        }
+
+        .close-card-btn {
+            display: none;
+            position: absolute;
+            top: 0.75rem;
+            right: 0.75rem;
+            background: none;
+            border: 1px solid rgba(201, 169, 98, 0.4);
+            color: var(--accent-gold);
+            font-size: 1.2rem;
+            cursor: pointer;
+            width: 32px;
+            height: 32px;
+            border-radius: 50%;
+            align-items: center;
+            justify-content: center;
+            transition: background 0.2s ease;
+            z-index: 10;
+        }
+
+        .close-card-btn:hover {
+            background: rgba(201, 169, 98, 0.2);
+        }
+
+        .achievement-card.expanded .close-card-btn {
+            display: flex;
+        }
+
+        .achievement-card.expanded .company-badge {
+            display: none;
+        }
+
+        .card-details {
+            display: none;
+            margin-top: 1.25rem;
+            padding-top: 1.25rem;
+            border-top: 1px solid rgba(201, 169, 98, 0.2);
+        }
+
+        .achievement-card.expanded .card-details {
+            display: block;
+        }
+
+        .card-details h4 {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 1.1rem;
+            color: var(--accent-gold);
+            margin-bottom: 0.75rem;
+        }
+
+        .card-details ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        .card-details ul li {
+            color: var(--soft-gray);
+            font-size: 0.9rem;
+            padding: 0.4rem 0;
+            padding-left: 1.2rem;
+            position: relative;
+        }
+
+        .card-details ul li::before {
+            content: '▸';
+            position: absolute;
+            left: 0;
+            color: var(--accent-gold);
+        }
+
         /* Projects Section */
         .projects {
             background: var(--white);
@@ -1638,42 +1752,103 @@
                 <h2>Key Achievements</h2>
                 <div class="divider"></div>
             </div>
+            <div class="card-overlay" id="cardOverlay"></div>
             <div class="achievement-grid">
                 <div class="achievement-card">
+                    <button class="close-card-btn">&times;</button>
                     <span class="company-badge"><svg xmlns="http://www.w3.org/2000/svg" width="90" height="16" viewBox="0 0 180 30" fill="none"><text x="0" y="22" font-family="Arial, sans-serif" font-size="22" font-weight="bold" fill="white" letter-spacing="1">DELL</text><text x="68" y="22" font-family="Arial, sans-serif" font-size="16" fill="white"> Technologies</text></svg></span>
                     <div class="achievement-icon"><svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="#c9a962" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M16 8h-6a2 2 0 1 0 0 4h4a2 2 0 1 1 0 4H8"/><path d="M12 18V6"/></svg></div>
                     <h3>$10M+ Cost Savings</h3>
                     <p>Negotiated favorable terms with Microsoft for Windows Copilot key integration on Dell PCs, demonstrating strategic partnership skills.</p>
+                    <div class="card-details">
+                        <h4>Key Details</h4>
+                        <ul>
+                            <li>Negotiated strategic licensing terms with Microsoft for the Windows Copilot key integration on Dell systems.</li>
+                            <li>Achieved $10M in cost avoidance, strengthening Dell's competitive positioning in the AI PC category.</li>
+                            <li>Collaborated with procurement, legal, and Microsoft partner teams to finalize agreement terms.</li>
+                            <li>Demonstrated strategic partnership management across global markets.</li>
+                        </ul>
+                    </div>
                 </div>
                 <div class="achievement-card">
+                    <button class="close-card-btn">&times;</button>
                     <span class="company-badge"><svg xmlns="http://www.w3.org/2000/svg" width="90" height="16" viewBox="0 0 180 30" fill="none"><text x="0" y="22" font-family="Arial, sans-serif" font-size="22" font-weight="bold" fill="white" letter-spacing="1">DELL</text><text x="68" y="22" font-family="Arial, sans-serif" font-size="16" fill="white"> Technologies</text></svg></span>
                     <div class="achievement-icon"><svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="#c9a962" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M4.5 16.5c-1.5 1.26-2 5-2 5s3.74-.5 5-2c.71-.84.7-2.13-.09-2.91a2.18 2.18 0 0 0-2.91-.09z"/><path d="m12 15-3-3a22 22 0 0 1 2-3.95A12.88 12.88 0 0 1 22 2c0 2.72-.78 7.5-6 11a22.35 22.35 0 0 1-4 2z"/><path d="M9 12H4s.55-3.03 2-4c1.62-1.08 5 0 5 0"/><path d="M12 15v5s3.03-.55 4-2c1.08-1.62 0-5 0-5"/></svg></div>
                     <h3>$30M Product Launch</h3>
                     <p>Managed global launch of Microsoft Office 2021, exceeding first-quarter sales targets by 12% through strategic go-to-market execution.</p>
+                    <div class="card-details">
+                        <h4>Key Details</h4>
+                        <ul>
+                            <li>Generated $30M in first-quarter revenue through data-driven pricing and channel optimization.</li>
+                            <li>Exceeded sales targets by 12% across global markets.</li>
+                            <li>Managed end-to-end product lifecycle from concept to market release.</li>
+                            <li>Increased recurring SaaS revenue by 5% through Microsoft 365 subscription promotions.</li>
+                        </ul>
+                    </div>
                 </div>
                 <div class="achievement-card">
+                    <button class="close-card-btn">&times;</button>
                     <span class="company-badge"><svg xmlns="http://www.w3.org/2000/svg" width="90" height="16" viewBox="0 0 180 30" fill="none"><text x="0" y="22" font-family="Arial, sans-serif" font-size="22" font-weight="bold" fill="white" letter-spacing="1">DELL</text><text x="68" y="22" font-family="Arial, sans-serif" font-size="16" fill="white"> Technologies</text></svg></span>
                     <div class="achievement-icon"><svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="#c9a962" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 8V4H8"/><rect width="16" height="12" x="4" y="8" rx="2"/><path d="M2 14h2"/><path d="M20 14h2"/><path d="M15 13v2"/><path d="M9 13v2"/></svg></div>
                     <h3>AI PC Pioneer</h3>
                     <p>Owned product vision for Windows 11 AI PC experiences, achieving 10% market share during early adoption phase.</p>
+                    <div class="card-details">
+                        <h4>Key Details</h4>
+                        <ul>
+                            <li>Drove a 10% increase in Copilot+ PC sales through enablement programs for 500+ sales representatives.</li>
+                            <li>Defined product roadmap and go-to-market strategy for AI-powered Copilot+ PCs.</li>
+                            <li>Served as primary liaison between Dell engineering, Microsoft product teams, and global marketing.</li>
+                            <li>Accelerated early-adoption rates among enterprise customers across 30+ global markets.</li>
+                        </ul>
+                    </div>
                 </div>
                 <div class="achievement-card">
+                    <button class="close-card-btn">&times;</button>
                     <span class="company-badge"><svg xmlns="http://www.w3.org/2000/svg" width="42" height="14" viewBox="0 0 84 28" fill="none"><text x="42" y="20" text-anchor="middle" font-family="Arial, sans-serif" font-size="20" font-weight="bold" fill="white" letter-spacing="1">USAA</text></svg></span>
                     <div class="achievement-icon"><svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="#c9a962" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2v8l4-4"/><path d="M12 10 8 6"/><circle cx="12" cy="14" r="2"/><path d="M12 16v6"/><path d="M6 18h12"/></svg></div>
                     <h3>480 Hours Saved Monthly</h3>
                     <p>Implemented Netezza database automation that eliminated manual reporting processes across enterprise teams.</p>
+                    <div class="card-details">
+                        <h4>Key Details</h4>
+                        <ul>
+                            <li>Led the implementation of a Netezza data warehouse and automated reporting workflows.</li>
+                            <li>Eliminated manual processes, saving an estimated 480 person-hours per month.</li>
+                            <li>Accelerated data delivery to stakeholders across multiple business units.</li>
+                            <li>Improved data accuracy and consistency in enterprise reporting.</li>
+                        </ul>
+                    </div>
                 </div>
                 <div class="achievement-card">
+                    <button class="close-card-btn">&times;</button>
                     <span class="company-badge"><svg xmlns="http://www.w3.org/2000/svg" width="42" height="14" viewBox="0 0 84 28" fill="none"><text x="42" y="20" text-anchor="middle" font-family="Arial, sans-serif" font-size="20" font-weight="bold" fill="white" letter-spacing="1">USAA</text></svg></span>
                     <div class="achievement-icon"><svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="#c9a962" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M3 3v18h18"/><path d="M18 17V9"/><path d="M13 17V5"/><path d="M8 17v-3"/></svg></div>
                     <h3>95% Error Reduction</h3>
                     <p>Led Tableau deployment for agile teams, dramatically improving reporting accuracy and enabling data-driven decisions.</p>
+                    <div class="card-details">
+                        <h4>Key Details</h4>
+                        <ul>
+                            <li>Led two agile scrum teams in the development and deployment of Tableau-based dashboards.</li>
+                            <li>Reduced reporting errors by 95%, enabling more accurate decision-making by senior leadership.</li>
+                            <li>Replaced legacy manual reporting with interactive, real-time visualizations.</li>
+                            <li>Trained cross-functional teams on Tableau best practices and self-service analytics.</li>
+                        </ul>
+                    </div>
                 </div>
                 <div class="achievement-card">
+                    <button class="close-card-btn">&times;</button>
                     <span class="company-badge"><svg xmlns="http://www.w3.org/2000/svg" width="42" height="14" viewBox="0 0 84 28" fill="none"><text x="42" y="20" text-anchor="middle" font-family="Arial, sans-serif" font-size="20" font-weight="bold" fill="white" letter-spacing="1">USAA</text></svg></span>
                     <div class="achievement-icon"><svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="#c9a962" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><circle cx="12" cy="12" r="6"/><circle cx="12" cy="12" r="2"/></svg></div>
                     <h3>100% Compliance Rate</h3>
                     <p>Maintained perfect on-time compliance reporting with federal regulatory agencies, avoiding potential fines totaling millions.</p>
+                    <div class="card-details">
+                        <h4>Key Details</h4>
+                        <ul>
+                            <li>Owned end-to-end regulatory reporting lifecycle for federal compliance requirements.</li>
+                            <li>Maintained 100% on-time submission rate, mitigating risk of multi-million-dollar fines.</li>
+                            <li>Coordinated with legal, compliance, and data teams to ensure accuracy.</li>
+                            <li>Established standardized processes for recurring regulatory submissions.</li>
+                        </ul>
+                    </div>
                 </div>
             </div>
         </div>
@@ -2353,6 +2528,36 @@ Be articulate, professional, and guide visitors to relevant sections with a natu
                 e.preventDefault();
                 document.querySelector(this.getAttribute('href')).scrollIntoView({ behavior: 'smooth' });
             });
+        });
+
+        // Achievement card expand/collapse
+        const cardOverlay = document.getElementById('cardOverlay');
+
+        document.querySelectorAll('.achievement-card').forEach(card => {
+            card.addEventListener('click', (e) => {
+                if (e.target.closest('.close-card-btn')) return;
+                if (card.classList.contains('expanded')) return;
+                card.classList.add('expanded');
+                cardOverlay.classList.add('visible');
+            });
+
+            card.querySelector('.close-card-btn').addEventListener('click', (e) => {
+                e.stopPropagation();
+                card.classList.remove('expanded');
+                cardOverlay.classList.remove('visible');
+            });
+        });
+
+        cardOverlay.addEventListener('click', () => {
+            document.querySelector('.achievement-card.expanded')?.classList.remove('expanded');
+            cardOverlay.classList.remove('visible');
+        });
+
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape') {
+                document.querySelector('.achievement-card.expanded')?.classList.remove('expanded');
+                cardOverlay.classList.remove('visible');
+            }
         });
 
         // Scroll animations
