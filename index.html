@@ -1101,11 +1101,12 @@
         /* Stack Architecture Toggle */
         .stack-toggle {
             display: flex;
+            flex-direction: column;
             align-items: center;
             justify-content: center;
-            gap: 0.5rem;
+            gap: 0.3rem;
             margin: 0 auto 2.5rem;
-            padding: 0.6rem 1.5rem;
+            padding: 0.8rem 1.5rem;
             background: none;
             border: 1px solid rgba(201, 169, 98, 0.3);
             border-radius: 8px;
@@ -1131,6 +1132,18 @@
         }
         .stack-toggle.active .toggle-icon {
             transform: rotate(45deg);
+        }
+        .toggle-hint {
+            font-size: 0.7rem;
+            font-weight: 400;
+            color: rgba(201, 169, 98, 0.5);
+            letter-spacing: 0.02em;
+            transition: opacity 0.3s ease;
+        }
+        .stack-toggle.active .toggle-hint {
+            opacity: 0;
+            height: 0;
+            overflow: hidden;
         }
 
         /* Expanded Stack Content */
@@ -2227,6 +2240,7 @@
             <!-- Stack Architecture Toggle -->
             <div class="stack-toggle" id="stackToggle">
                 <span class="toggle-icon">+</span> View My Software Stack Architecture
+                <span class="toggle-hint">Click to expand and see how I use these tools together</span>
             </div>
 
             <div class="stack-expanded-content" id="stackContent">
